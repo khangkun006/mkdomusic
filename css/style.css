@@ -586,3 +586,184 @@ footer p{
     }
 
 }
+/* ================= SMART LINK ================= */
+
+.smartlink{
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.75);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.3s;
+
+    z-index:3000;
+
+}
+
+.smartlink.active{
+
+    opacity:1;
+    visibility:visible;
+
+}
+
+.smartlink-box{
+
+    width:380px;
+    max-width:90%;
+
+    background:#101010;
+
+    border-radius:25px;
+
+    padding:40px;
+
+    text-align:center;
+
+    position:relative;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.5);
+
+}
+
+.smartlink-box img{
+
+    width:90px;
+    height:90px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    margin-bottom:20px;
+
+}
+
+.smartlink-box h2{
+
+    margin-bottom:10px;
+    font-size:32px;
+
+}
+
+.smartlink-box p{
+
+    color:#bdbdbd;
+    margin-bottom:30px;
+
+}
+
+.smart-btn{
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    width:100%;
+
+    padding:16px 24px;
+
+    margin:15px 0;
+
+    text-decoration:none;
+
+    color:white;
+
+    border-radius:18px;
+
+    font-size:18px;
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.smart-btn i{
+
+    width:28px;
+
+    font-size:24px;
+
+    text-align:center;
+
+}
+
+.smart-btn:hover{
+
+    transform:translateY(-4px);
+
+}
+
+/* ===== PLATFORM COLORS ===== */
+
+.spotify{
+
+    background:#1DB954;
+
+}
+
+.apple{
+
+    background:#000;
+    border:1px solid #444;
+
+}
+
+.youtube{
+
+    background:#FF0000;
+
+}
+
+.instagram{
+
+    background:linear-gradient(
+        45deg,
+        #f58529,
+        #dd2a7b,
+        #8134af,
+        #515bd4
+    );
+
+}
+
+.facebook{
+
+    background:#1877F2;
+
+}
+
+.contact-link{
+
+    background:#444;
+
+}
+
+.close-smartlink{
+
+    position:absolute;
+
+    top:20px;
+    right:25px;
+
+    font-size:34px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.close-smartlink:hover{
+
+    transform:rotate(90deg);
+
+}

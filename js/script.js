@@ -68,3 +68,34 @@ document.querySelectorAll(".nav-links a").forEach(link => {
     });
 
 });
+// SMART LINK
+
+const smartLink = document.querySelector(".smartlink");
+
+document
+.querySelector("#listenBtn")
+.addEventListener("click",(e)=>{
+
+    e.preventDefault();
+
+    smartLink.classList.add("active");
+
+});
+
+document
+.querySelector(".close-smartlink")
+.addEventListener("click",()=>{
+
+    smartLink.classList.remove("active");
+
+});
+
+smartLink.addEventListener("click",(e)=>{
+
+    if(e.target===smartLink){
+
+        smartLink.classList.remove("active");
+
+    }
+
+});
