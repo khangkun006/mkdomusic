@@ -72,7 +72,7 @@ header.scrolled{
     rgba(0,0,0,.25),
     rgba(0,0,0,.15)
 ),
-        url("../assets/images/hero.JPG") center center/cover no-repeat;
+        url("../assets/images/hero.jpg") center center/cover no-repeat;
     display:flex;
     justify-content:center;
     align-items:center;
