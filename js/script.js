@@ -1,30 +1,27 @@
 const header = document.querySelector("header");
 
 window.addEventListener("scroll", () => {
-
-    if(window.scrollY > 50){
+    if (window.scrollY > 50) {
         header.classList.add("scrolled");
-    }else{
+    } else {
         header.classList.remove("scrolled");
     }
-
 });
+
 // Scroll Reveal Animation
 
 const reveals = document.querySelectorAll(".reveal");
 
-function revealOnScroll(){
+function revealOnScroll() {
 
-    reveals.forEach((item)=>{
+    reveals.forEach((item) => {
 
         const windowHeight = window.innerHeight;
         const revealTop = item.getBoundingClientRect().top;
         const revealPoint = 120;
 
-        if(revealTop < windowHeight - revealPoint){
-
+        if (revealTop < windowHeight - revealPoint) {
             item.classList.add("active");
-
         }
 
     });
@@ -32,11 +29,42 @@ function revealOnScroll(){
 }
 
 window.addEventListener("scroll", revealOnScroll);
-
 revealOnScroll();
+
+// ================= MOBILE MENU =================
+
 const menuToggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector(".nav-links");
+const overlay = document.querySelector(".menu-overlay");
 
 menuToggle.addEventListener("click", () => {
+
     navLinks.classList.toggle("active");
+    overlay.classList.toggle("active");
+
+    menuToggle.innerHTML =
+        navLinks.classList.contains("active")
+            ? "✕"
+            : "☰";
+
+});
+
+overlay.addEventListener("click", () => {
+
+    navLinks.classList.remove("active");
+    overlay.classList.remove("active");
+    menuToggle.innerHTML = "☰";
+
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        navLinks.classList.remove("active");
+        overlay.classList.remove("active");
+        menuToggle.innerHTML = "☰";
+
+    });
+
 });
