@@ -1,6 +1,14 @@
 /* Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+:root{
 
+    --primary:#8B0000;
+    --primary-hover:#A30000;
+
+    --white:#ffffff;
+    --gray:#bdbdbd;
+
+}
 *{
     margin:0;
     padding:0;
@@ -13,7 +21,11 @@ html{
 }
 
 body{
-    background:#050505;
+    background:linear-gradient(
+        to bottom,
+        #1a0000,
+        #050505
+    );
     color:white;
 }
 
@@ -30,9 +42,16 @@ header{
 }
 
 header.scrolled{
-    background:rgba(0,0,0,.75);
+
+    background:rgba(100, 0, 0, 0.65);
+
     backdrop-filter:blur(20px);
-    box-shadow:0 8px 30px rgba(0,0,0,.35);
+    -webkit-backdrop-filter:blur(20px);
+
+    box-shadow:0 8px 30px rgba(139,0,0,.25);
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
 }
 .navbar{
     display:flex;
@@ -67,7 +86,7 @@ header.scrolled{
 }
 
 .navbar a:hover{
-    color:#9f9f9f;
+    color:var(--primary);
 }
 
 /* ================= HERO ================= */
@@ -131,8 +150,8 @@ button:hover{
 }
 
 .btn{
-    background:white;
-    color:black;
+    background:var(--primary);
+    color:var(--white);
     text-decoration:none;
     padding:15px 35px;
     border-radius:50px;
@@ -142,12 +161,12 @@ button:hover{
 
 .btn:hover{
     transform:translateY(-4px);
-    background:#d8d8d8;
+    background:var(--primary-hover);
 }
 
 .btn-outline{
-    border:2px solid white;
-    color:white;
+    border:2px solid var(--primary);
+    color:var(--white);
     text-decoration:none;
     padding:15px 35px;
     border-radius:50px;
@@ -155,8 +174,9 @@ button:hover{
 }
 
 .btn-outline:hover{
-    background:white;
-    color:black;
+    background:var(--primary);
+    color:var(--white);
+
 }
 .subtitle{
     margin-bottom:20px;
@@ -345,7 +365,7 @@ button:hover{
 
 .release-card img:hover{
     transform: scale(1.05) rotate(-1deg);
-    box-shadow: 0 30px 70px rgba(255,255,255,.15);
+    box-shadow:0 30px 70px rgba(139,0,0,.45);
 }
 /* ================= SONGS ================= */
 
@@ -403,20 +423,24 @@ button:hover{
 
 .btn-small{
 
-    color:white;
+    color:var(--white);
     text-decoration:none;
-    border:1px solid white;
+
+    border:1px solid var(--primary);
+
     padding:10px 20px;
     border-radius:40px;
+
     display:inline-block;
+
     transition:.3s;
 
 }
 
 .btn-small:hover{
 
-    background:white;
-    color:black;
+    background:var(--primary);
+    color:var(--white);
 
 }
 /* ================= MUSIC VIDEOS ================= */
@@ -522,7 +546,7 @@ footer p{
 }
 
 .contact-info a:hover{
-    color:#888;
+    color:var(--primary);
 }
 /* ================= MOBILE MENU ================= */
 
