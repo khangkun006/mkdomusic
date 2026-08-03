@@ -116,7 +116,7 @@ function changeSlide(){
 
     }
 
-    track.style.transform=`translateX(-${550*currentSlide}px)`;
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
 
     dots.forEach(dot=>dot.classList.remove("active"));
 
