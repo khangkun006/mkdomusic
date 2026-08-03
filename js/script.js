@@ -125,69 +125,135 @@ function changeSlide(){
 }
 
 setInterval(changeSlide,4000);
-// ================= JOURNEY =================
-
 // ================= THE JOURNEY =================
 
 const journeyData = [
 
 {
-year:"2021",
-title:"The Beginning",
-desc:"Started making music with nothing more than a laptop, headphones and endless curiosity."
+    year:"2021",
+    title:"The Beginning",
+    desc:"Started making music with nothing but a phone and old headphones."
 },
 
 {
-year:"2022",
-title:"Building My Sound",
-desc:"Learning recording, mixing and production through countless experiments."
+    year:"2022",
+    title:"Learning the Basics",
+    desc:"Learn basic music editing, recording, mixing."
 },
 
 {
-year:"2023",
-title:"Khang Studio",
-desc:"Turning emotions into songs and building my own creative space."
+    year:"2023",
+    title:"Finding My Sound",
+    desc:"Gradually there are easier songs to listen to."
+},
+
+{
+    year:"2024",
+    title:"Better Equipment",
+    desc:"Invest in better equipment for music."
+},
+
+{
+    year:"2025",
+    title:"Growing Every Day",
+    desc:"Connect more with music lovers."
+},
+
+{
+    year:"2026",
+    title:"Khang Studio",
+    desc:"Still completing the home studio along with the demos."
 }
 
 ];
 
-const journeyTrack=document.querySelector(".journey-track");
+const journeyTrack = document.querySelector(".journey-track");
 
-const journeyTitle=document.getElementById("journey-title");
+const desktopYear = document.getElementById("journey-year");
+const desktopTitle = document.getElementById("journey-title");
+const desktopDesc = document.getElementById("journey-desc");
 
-const journeyYear=document.getElementById("journey-year");
+const mobileYear = document.getElementById("journey-year-mobile");
+const mobileTitle = document.getElementById("journey-title-mobile");
+const mobileDesc = document.getElementById("journey-desc-mobile");
 
-const journeyDesc=document.getElementById("journey-desc");
+const desktopDots = document.querySelectorAll(".journey-dots .journey-dot");
+const mobileDots = document.querySelectorAll(".journey-dots-mobile .journey-dot");
 
-const journeyDots=document.querySelectorAll(".journey-dot");
-
-let currentJourney=0;
+let currentJourney = 0;
 
 function updateJourney(){
 
-journeyTrack.style.transform=`translateX(-${currentJourney*100}%)`;
+    // Slide ảnh
+    journeyTrack.style.transform =
+        `translateX(-${currentJourney * 100}%)`;
 
-journeyTitle.style.opacity=0;
-journeyYear.style.opacity=0;
-journeyDesc.style.opacity=0;
+    // Desktop
+    if(desktopYear){
 
-setTimeout(()=>{
+        desktopYear.style.opacity = 0;
+        desktopTitle.style.opacity = 0;
+        desktopDesc.style.opacity = 0;
 
-journeyTitle.innerHTML=journeyData[currentJourney].title;
+    }
 
-journeyYear.innerHTML=journeyData[currentJourney].year;
+    // Mobile
+    if(mobileYear){
 
-journeyDesc.innerHTML=journeyData[currentJourney].desc;
+        mobileYear.style.opacity = 0;
+        mobileTitle.style.opacity = 0;
+        mobileDesc.style.opacity = 0;
 
-journeyTitle.style.opacity=1;
-journeyYear.style.opacity=1;
-journeyDesc.style.opacity=1;
+    }
 
-},250);
+    setTimeout(()=>{
 
-journeyDots.forEach(dot=>dot.classList.remove("active"));
+        // Desktop
+        if(desktopYear){
 
-journeyDots[currentJourney].classList.add("active");
+            desktopYear.textContent =
+                journeyData[currentJourney].year;
+
+            desktopTitle.textContent =
+                journeyData[currentJourney].title;
+
+            desktopDesc.textContent =
+                journeyData[currentJourney].desc;
+
+            desktopYear.style.opacity = 1;
+            desktopTitle.style.opacity = 1;
+            desktopDesc.style.opacity = 1;
+
+        }
+
+        // Mobile
+        if(mobileYear){
+
+            mobileYear.textContent =
+                journeyData[currentJourney].year;
+
+            mobileTitle.textContent =
+                journeyData[currentJourney].title;
+
+            mobileDesc.textContent =
+                journeyData[currentJourney].desc;
+
+            mobileYear.style.opacity = 1;
+            mobileTitle.style.opacity = 1;
+            mobileDesc.style.opacity = 1;
+
+        }
+
+    },250);
+
+    desktopDots.forEach(dot=>dot.classList.remove("active"));
+    mobileDots.forEach(dot=>dot.classList.remove("active"));
+
+    if(desktopDots[currentJourney])
+        desktopDots[currentJourney].classList.add("active");
+
+    if(mobileDots[currentJourney])
+        mobileDots[currentJourney].classList.add("active");
 
 }
 
@@ -195,14 +261,14 @@ updateJourney();
 
 setInterval(()=>{
 
-currentJourney++;
+    currentJourney++;
 
-if(currentJourney>=journeyData.length){
+    if(currentJourney >= journeyData.length){
 
-currentJourney=0;
+        currentJourney = 0;
 
-}
+    }
 
-updateJourney();
+    updateJourney();
 
 },5000);
