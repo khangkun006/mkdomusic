@@ -99,3 +99,29 @@ smartLink.addEventListener("click",(e)=>{
     }
 
 });
+// ================= ABOUT SLIDER =================
+
+const track = document.querySelector(".about-track");
+const dots = document.querySelectorAll(".dot");
+
+let currentSlide = 0;
+
+function changeSlide(){
+
+    currentSlide++;
+
+    if(currentSlide>=4){
+
+        currentSlide=0;
+
+    }
+
+    track.style.transform=`translateX(-${550*currentSlide}px)`;
+
+    dots.forEach(dot=>dot.classList.remove("active"));
+
+    dots[currentSlide].classList.add("active");
+
+}
+
+setInterval(changeSlide,4000);

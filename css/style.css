@@ -23,7 +23,7 @@ html{
 body{
     background:linear-gradient(
         to bottom,
-        #1a0000,
+        #360000,
         #050505
     );
     color:white;
@@ -278,27 +278,154 @@ button:hover{
     }
 
 }
+/* ================= ABOUT ================= */
+
 .about{
 
-    padding:120px 12%;
-    text-align:center;
+    padding:120px 10%;
 
 }
 
 .about h2{
 
+    text-align:center;
     font-size:48px;
-    margin-bottom:30px;
+
+    margin-bottom:60px;
 
 }
 
-.about p{
+.about-container{
 
-    max-width:800px;
-    margin:auto;
-    color:#bbb;
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    gap:80px;
+
+    flex-wrap:wrap;
+
+}
+
+/* LEFT */
+
+.about-slider{
+
+    width:550px;
+
+    overflow:hidden;
+
+}
+
+.about-track{
+
+    display:flex;
+
+    transition:transform .7s ease;
+
+}
+
+.about-track img{
+
+    width:550px;
+
+    height:412px;
+
+    object-fit:cover;
+
+    flex-shrink:0;
+
+    border-radius:25px;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.45);
+
+}
+
+.about-dots{
+
+    margin-top:25px;
+
+    text-align:center;
+
+}
+
+.dot{
+
+    width:10px;
+    height:10px;
+
+    background:#666;
+
+    border-radius:50%;
+
+    display:inline-block;
+
+    margin:0 6px;
+
+    transition:.3s;
+
+}
+
+.dot.active{
+
+    background:#8B0000;
+
+}
+
+/* RIGHT */
+
+.about-text{
+
+    flex:1;
+
+    min-width:320px;
+
+}
+
+.about-text h3{
+
+    font-size:42px;
+
+    margin-bottom:25px;
+
+}
+
+.about-text p{
+
+    color:#bdbdbd;
+
     line-height:1.9;
+
     font-size:18px;
+
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.about-container{
+
+    flex-direction:column;
+
+}
+
+.about-slider{
+
+    width:100%;
+
+}
+
+.about-track img{
+
+    width:100%;
+
+    height:auto;
+
+    aspect-ratio:4/3;
+
+}
 
 }
 /* ================= LATEST RELEASE ================= */
