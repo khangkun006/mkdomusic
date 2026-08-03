@@ -125,3 +125,84 @@ function changeSlide(){
 }
 
 setInterval(changeSlide,4000);
+// ================= JOURNEY =================
+
+// ================= THE JOURNEY =================
+
+const journeyData = [
+
+{
+year:"2021",
+title:"The Beginning",
+desc:"Started making music with nothing more than a laptop, headphones and endless curiosity."
+},
+
+{
+year:"2022",
+title:"Building My Sound",
+desc:"Learning recording, mixing and production through countless experiments."
+},
+
+{
+year:"2023",
+title:"Khang Studio",
+desc:"Turning emotions into songs and building my own creative space."
+}
+
+];
+
+const journeyTrack=document.querySelector(".journey-track");
+
+const journeyTitle=document.getElementById("journey-title");
+
+const journeyYear=document.getElementById("journey-year");
+
+const journeyDesc=document.getElementById("journey-desc");
+
+const journeyDots=document.querySelectorAll(".journey-dot");
+
+let currentJourney=0;
+
+function updateJourney(){
+
+journeyTrack.style.transform=`translateX(-${currentJourney*100}%)`;
+
+journeyTitle.style.opacity=0;
+journeyYear.style.opacity=0;
+journeyDesc.style.opacity=0;
+
+setTimeout(()=>{
+
+journeyTitle.innerHTML=journeyData[currentJourney].title;
+
+journeyYear.innerHTML=journeyData[currentJourney].year;
+
+journeyDesc.innerHTML=journeyData[currentJourney].desc;
+
+journeyTitle.style.opacity=1;
+journeyYear.style.opacity=1;
+journeyDesc.style.opacity=1;
+
+},250);
+
+journeyDots.forEach(dot=>dot.classList.remove("active"));
+
+journeyDots[currentJourney].classList.add("active");
+
+}
+
+updateJourney();
+
+setInterval(()=>{
+
+currentJourney++;
+
+if(currentJourney>=journeyData.length){
+
+currentJourney=0;
+
+}
+
+updateJourney();
+
+},5000);
