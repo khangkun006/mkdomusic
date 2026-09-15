@@ -272,3 +272,411 @@ setInterval(()=>{
     updateJourney();
 
 },5000);
+// =========================================================
+// PROJECT INQUIRY FORM
+// =========================================================
+
+const projectForm = document.querySelector("#projectForm");
+
+if (projectForm) {
+
+    const serviceInputs =
+        document.querySelectorAll('input[name="service"]');
+
+    const bpmField =
+        document.querySelector("#bpmField");
+
+    const keyField =
+        document.querySelector("#keyField");
+
+    const driveField =
+        document.querySelector("#driveField");
+
+    const bpmInput =
+        document.querySelector("#bpm");
+
+    const keyInput =
+        document.querySelector("#key");
+
+    const driveInput =
+        document.querySelector("#driveLink");
+
+    const serviceError =
+        document.querySelector("#serviceError");
+
+    const formStatus =
+        document.querySelector("#formStatus");
+
+    const submitBtn =
+        document.querySelector(".submit-btn");
+
+
+    // ================= SERVICE LOGIC =================
+
+    function updateServiceFields() {
+
+        const selected =
+            document.querySelector(
+                'input[name="service"]:checked'
+            );
+
+        // Ẩn tất cả trước
+        if (bpmField)
+            bpmField.classList.add("hidden");
+
+        if (keyField)
+            keyField.classList.add("hidden");
+
+        if (driveField)
+            driveField.classList.add("hidden");
+
+
+        if (!selected)
+            return;
+
+
+        const service = selected.value;
+
+
+        // ================= BPM + KEY =================
+        // Custom Beat
+        // Tham khảo kho Beat
+
+        if (
+            service === "Custom Beat" ||
+            service === "Tham khảo kho Beat"
+        ) {
+
+            if (bpmField)
+                bpmField.classList.remove("hidden");
+
+            if (keyField)
+                keyField.classList.remove("hidden");
+
+        }
+
+
+        // ================= GOOGLE DRIVE =================
+        // Các dịch vụ cần file/project
+
+        const driveServices = [
+
+            "Thu âm Vocal",
+            "Mix & Master",
+            "Vocal Editing",
+            "Combo Thu âm + Mixing + Mastering"
+
+        ];
+
+        if (driveServices.includes(service)) {
+
+            if (driveField)
+                driveField.classList.remove("hidden");
+
+        }
+
+    }
+
+
+    // ================= SERVICE CHANGE =================
+
+    serviceInputs.forEach(input => {
+
+        input.addEventListener("change", () => {
+
+            updateServiceFields();
+
+            if (serviceError) {
+
+                serviceError.classList.remove("active");
+
+            }
+
+        });
+
+    });
+
+
+    // Chạy một lần khi load trang
+    updateServiceFields();
+
+
+    // =====================================================
+    // FORM VALIDATION
+    // =====================================================
+
+    projectForm.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+
+        // Reset status
+
+        if (formStatus) {
+
+            formStatus.className = "form-status";
+
+            formStatus.textContent = "";
+
+        }
+
+
+        // ================= GET DATA =================
+
+        const name =
+            document.querySelector("#name")?.value.trim();
+
+        const email =
+            document.querySelector("#email")?.value.trim();
+
+        const service =
+            document.querySelector(
+                'input[name="service"]:checked'
+            );
+
+
+        // ================= VALIDATE NAME =================
+
+        if (!name) {
+
+            showFormError(
+                "Vui lòng nhập Họ tên / Nghệ danh."
+            );
+
+            document.querySelector("#name")?.focus();
+
+            return;
+
+        }
+
+
+        // ================= VALIDATE EMAIL =================
+
+        if (!email) {
+
+            showFormError(
+                "Vui lòng nhập Email."
+            );
+
+            document.querySelector("#email")?.focus();
+
+            return;
+
+        }
+
+
+        const emailPattern =
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+        if (!emailPattern.test(email)) {
+
+            showFormError(
+                "Email không hợp lệ. Vui lòng kiểm tra lại."
+            );
+
+            document.querySelector("#email")?.focus();
+
+            return;
+
+        }
+
+
+        // ================= VALIDATE SERVICE =================
+
+        if (!service) {
+
+            if (serviceError) {
+
+                serviceError.textContent =
+                    "Vui lòng chọn ít nhất một dịch vụ.";
+
+                serviceError.classList.add("active");
+
+            }
+
+            return;
+
+        }
+
+
+        // ================= SUBMIT =================
+
+        if (submitBtn) {
+
+            submitBtn.classList.add("loading");
+
+            submitBtn.disabled = true;
+
+        }
+
+
+       const FORM_ENDPOINT =
+    "https://script.google.com/macros/s/AKfycbxGWy5KklfbpGhDhmP1mdKPKuYhZ7GaUKQ8ZwOwcrXiPwCg4y8NP8GLlXmogjMqi50I/exec";
+
+
+const formData = {
+
+    name:
+        document.querySelector("#name")?.value.trim() || "",
+
+    email:
+        document.querySelector("#email")?.value.trim() || "",
+
+    phone:
+        document.querySelector("#phone")?.value.trim() || "",
+
+    facebook:
+        document.querySelector("#facebook")?.value.trim() || "",
+
+    zalo:
+        document.querySelector("#zalo")?.value.trim() || "",
+
+    service:
+        service.value || "",
+
+    genre:
+        document.querySelector("#genre")?.value.trim() || "",
+
+    bpm:
+        bpmInput?.value.trim() || "",
+
+    key:
+        keyInput?.value.trim() || "",
+
+    budget:
+        document.querySelector("#budget")?.value || "",
+
+    deadline:
+        document.querySelector("#deadline")?.value || "",
+
+    reference:
+        document.querySelector("#reference")?.value.trim() || "",
+
+    referenceLink:
+        document.querySelector("#referenceLink")?.value.trim() || "",
+
+    driveLink:
+        driveInput?.value.trim() || "",
+
+    description:
+        document.querySelector("#description")?.value.trim() || "",
+
+    page:
+        window.location.href,
+
+    submittedAt:
+        new Date().toLocaleString("vi-VN")
+
+};
+
+
+try {
+
+    await fetch(
+        FORM_ENDPOINT,
+        {
+
+            method:"POST",
+
+            mode:"no-cors",
+
+            headers:{
+                "Content-Type":
+                    "text/plain;charset=utf-8"
+            },
+
+            body:
+                JSON.stringify(formData)
+
+        }
+    );
+
+
+    if (formStatus) {
+
+        formStatus.className =
+            "form-status success";
+
+        formStatus.textContent =
+            "Yêu cầu của bạn đã được gửi thành công. MKDo sẽ liên hệ lại sớm nhất.";
+
+    }
+
+
+    projectForm.reset();
+
+    updateServiceFields();
+
+
+} catch(error) {
+
+    console.error(error);
+
+
+    if (formStatus) {
+
+        formStatus.className =
+            "form-status error";
+
+        formStatus.textContent =
+            "Không thể gửi yêu cầu lúc này. Vui lòng thử lại hoặc liên hệ trực tiếp với MKDo.";
+
+    }
+
+}
+
+
+if (submitBtn) {
+
+    submitBtn.classList.remove("loading");
+
+    submitBtn.disabled = false;
+
+}
+
+
+        setTimeout(() => {
+
+            if (submitBtn) {
+
+                submitBtn.classList.remove("loading");
+
+                submitBtn.disabled = false;
+
+            }
+
+
+            if (formStatus) {
+
+                formStatus.className =
+                    "form-status success";
+
+                formStatus.textContent =
+                    "Form đã được kiểm tra thành công. Bước tiếp theo sẽ kết nối form này với hệ thống nhận yêu cầu của MKDo.";
+
+            }
+
+        }, 700);
+
+    });
+
+
+    // =====================================================
+    // ERROR MESSAGE
+    // =====================================================
+
+    function showFormError(message) {
+
+        if (!formStatus)
+            return;
+
+        formStatus.className =
+            "form-status error";
+
+        formStatus.textContent =
+            message;
+
+    }
+
+}

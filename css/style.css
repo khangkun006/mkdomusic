@@ -1267,3 +1267,690 @@ footer p{
 }
 
 }
+/* =========================================================
+   PROJECT INQUIRY PAGE
+   ========================================================= */
+
+.project-page{
+    min-height:100vh;
+    padding-top:120px;
+}
+
+.project-section{
+    padding:80px 8% 120px;
+}
+
+.project-container{
+    max-width:1100px;
+    margin:0 auto;
+}
+
+/* ================= PROJECT HEADING ================= */
+
+.project-heading{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.project-heading h1{
+    font-size:52px;
+    letter-spacing:5px;
+    margin-bottom:20px;
+}
+
+.project-heading p{
+    color:#bdbdbd;
+    font-size:17px;
+    line-height:1.8;
+    max-width:650px;
+    margin:0 auto;
+}
+
+/* ================= FORM ================= */
+
+.project-form{
+    width:100%;
+}
+
+.form-section{
+    background:rgba(16,16,16,.78);
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:25px;
+    padding:40px;
+    margin-bottom:30px;
+    box-shadow:0 20px 60px rgba(0,0,0,.25);
+}
+
+.form-section-title{
+    font-size:25px;
+    margin-bottom:30px;
+    letter-spacing:1px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.form-group.full-width{
+    grid-column:1 / -1;
+}
+
+.form-group label{
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:10px;
+    color:#e8e8e8;
+}
+
+.form-group label span{
+    color:#8B0000;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+
+    width:100%;
+
+    background:#090909;
+
+    border:1px solid #333;
+
+    border-radius:12px;
+
+    padding:15px 17px;
+
+    color:white;
+
+    font-family:'Inter',sans-serif;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder{
+    color:#666;
+}
+
+.form-group select{
+    cursor:pointer;
+}
+
+.form-group select option{
+    background:#101010;
+    color:white;
+}
+
+.form-group textarea{
+    min-height:150px;
+    resize:vertical;
+    line-height:1.7;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 3px rgba(139,0,0,.12);
+
+}
+
+/* ================= SERVICES ================= */
+
+.service-options{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.service-option{
+
+    position:relative;
+
+    display:flex;
+    align-items:center;
+
+    padding:18px 20px;
+
+    background:#090909;
+
+    border:1px solid #333;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.service-option:hover{
+
+    border-color:#666;
+
+    transform:translateY(-2px);
+
+}
+
+.service-option input{
+
+    position:absolute;
+
+    opacity:0;
+
+    pointer-events:none;
+
+}
+
+.service-option span{
+
+    position:relative;
+
+    padding-left:32px;
+
+    color:#ddd;
+
+    font-size:15px;
+
+    line-height:1.5;
+
+}
+
+.service-option span::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:17px;
+    height:17px;
+
+    border:1px solid #555;
+
+    border-radius:50%;
+
+    transition:.25s;
+
+}
+
+.service-option span::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:5px;
+    top:50%;
+
+    width:9px;
+    height:9px;
+
+    transform:translateY(-50%) scale(0);
+
+    background:var(--primary);
+
+    border-radius:50%;
+
+    transition:.25s;
+
+}
+
+.service-option:has(input:checked){
+
+    border-color:var(--primary);
+
+    background:rgba(139,0,0,.08);
+
+}
+
+.service-option input:checked + span::before{
+
+    border-color:var(--primary);
+
+}
+
+.service-option input:checked + span::after{
+
+    transform:translateY(-50%) scale(1);
+
+}
+
+/* ================= DYNAMIC FIELDS ================= */
+
+.hidden{
+    display:none !important;
+}
+
+.project-details.hidden{
+    display:none;
+}
+
+/* ================= ERROR ================= */
+
+.form-error,
+.service-error{
+
+    color:#ff7777;
+
+    font-size:13px;
+
+    margin-top:8px;
+
+    display:none;
+
+}
+
+.form-error.active,
+.service-error.active{
+    display:block;
+}
+
+/* ================= SUBMIT ================= */
+
+.form-submit{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    margin-top:40px;
+
+}
+
+.submit-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+
+    min-width:240px;
+
+    padding:16px 35px;
+
+    border:none;
+
+    border-radius:50px;
+
+    background:var(--primary);
+
+    color:white;
+
+    font-family:'Inter',sans-serif;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.submit-btn:hover{
+
+    background:var(--primary-hover);
+
+    transform:translateY(-4px);
+
+    box-shadow:0 12px 30px rgba(139,0,0,.25);
+
+}
+
+.submit-btn:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+}
+
+.submit-loading{
+    display:none;
+}
+
+.submit-btn.loading .submit-text{
+    display:none;
+}
+
+.submit-btn.loading .submit-loading{
+    display:inline-block;
+}
+
+.form-note{
+
+    margin-top:18px;
+
+    color:#777;
+
+    font-size:13px;
+
+    text-align:center;
+
+    line-height:1.7;
+
+}
+
+/* ================= FORM STATUS ================= */
+
+.form-status{
+
+    width:100%;
+
+    max-width:600px;
+
+    margin:25px auto 0;
+
+    padding:15px 20px;
+
+    border-radius:12px;
+
+    text-align:center;
+
+    font-size:14px;
+
+    line-height:1.6;
+
+    display:none;
+
+}
+
+.form-status.success{
+
+    display:block;
+
+    background:rgba(30,130,70,.12);
+
+    border:1px solid rgba(70,180,110,.3);
+
+    color:#8ee0a8;
+
+}
+
+.form-status.error{
+
+    display:block;
+
+    background:rgba(139,0,0,.12);
+
+    border:1px solid rgba(180,60,60,.35);
+
+    color:#ff9b9b;
+
+}
+
+/* ================= DIRECT CONTACT ================= */
+
+.project-direct-contact{
+
+    text-align:center;
+
+    margin-top:55px;
+
+    padding-top:45px;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+.project-direct-contact h3{
+
+    font-size:24px;
+
+    margin-bottom:12px;
+
+}
+
+.project-direct-contact p{
+
+    color:#999;
+
+    line-height:1.8;
+
+    margin-bottom:20px;
+
+}
+
+.project-direct-contact a{
+
+    color:white;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+.project-direct-contact a:hover{
+
+    color:var(--primary);
+
+}
+
+/* ================= HOMEPAGE START PROJECT BUTTON ================= */
+
+.contact-action{
+
+    margin-top:35px;
+
+}
+
+.contact-project-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:15px;
+
+    padding:15px 28px;
+
+    border:1px solid var(--primary);
+
+    border-radius:50px;
+
+    background:transparent;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    letter-spacing:1px;
+
+    transition:.35s;
+
+}
+
+.contact-project-btn:hover{
+
+    background:var(--primary);
+
+    color:white;
+
+    transform:translateY(-4px);
+
+    box-shadow:0 12px 30px rgba(139,0,0,.25);
+
+}
+
+.contact-arrow{
+
+    font-size:18px;
+
+    transition:.3s;
+
+}
+
+.contact-project-btn:hover .contact-arrow{
+
+    transform:translate(3px,-3px);
+
+}
+
+/* ================= PROJECT FOOTER ================= */
+
+.project-footer{
+
+    text-align:center;
+
+    padding:50px 20px;
+
+    margin-top:20px;
+
+    border-top:1px solid rgba(255,255,255,.06);
+
+    background:#090909;
+
+}
+
+.project-footer p{
+
+    color:#777;
+
+    font-size:13px;
+
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:768px){
+
+    .project-page{
+        padding-top:100px;
+    }
+
+    .project-section{
+        padding:60px 5% 90px;
+    }
+
+    .project-heading{
+        margin-bottom:40px;
+    }
+
+    .project-heading h1{
+        font-size:38px;
+        letter-spacing:3px;
+    }
+
+    .project-heading p{
+        font-size:15px;
+    }
+
+    .form-section{
+        padding:28px 22px;
+        border-radius:20px;
+    }
+
+    .form-section-title{
+        font-size:21px;
+        margin-bottom:25px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+        gap:20px;
+    }
+
+    .form-group.full-width{
+        grid-column:auto;
+    }
+
+    .service-options{
+        grid-template-columns:1fr;
+    }
+
+    .service-option{
+        padding:16px 17px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea{
+        font-size:16px;
+    }
+
+    .submit-btn{
+        width:100%;
+        max-width:320px;
+    }
+
+    .project-direct-contact{
+        margin-top:40px;
+    }
+
+}
+
+/* ================= SMALL MOBILE ================= */
+
+@media(max-width:480px){
+
+    .project-page{
+        padding-top:90px;
+    }
+
+    .project-section{
+        padding:50px 4% 70px;
+    }
+
+    .project-heading h1{
+        font-size:31px;
+        letter-spacing:2px;
+    }
+
+    .project-heading p{
+        font-size:14px;
+    }
+
+    .form-section{
+        padding:24px 17px;
+    }
+
+    .form-section-title{
+        font-size:20px;
+    }
+
+    .service-option span{
+        font-size:14px;
+    }
+
+    .contact-project-btn{
+        width:100%;
+        max-width:280px;
+    }
+
+}
