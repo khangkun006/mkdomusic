@@ -68,37 +68,47 @@ document.querySelectorAll(".nav-links a").forEach(link => {
     });
 
 });
-// SMART LINK
+// ================= SMART LINK =================
 
 const smartLink = document.querySelector(".smartlink");
+const listenBtn = document.querySelector("#listenBtn");
+const closeSmartLink = document.querySelector(".close-smartlink");
 
-document
-.querySelector("#listenBtn")
-.addEventListener("click",(e)=>{
+if (smartLink && listenBtn) {
 
-    e.preventDefault();
+    listenBtn.addEventListener("click", (e) => {
 
-    smartLink.classList.add("active");
+        e.preventDefault();
 
-});
+        smartLink.classList.add("active");
 
-document
-.querySelector(".close-smartlink")
-.addEventListener("click",()=>{
+    });
 
-    smartLink.classList.remove("active");
+}
 
-});
+if (smartLink && closeSmartLink) {
 
-smartLink.addEventListener("click",(e)=>{
-
-    if(e.target===smartLink){
+    closeSmartLink.addEventListener("click", () => {
 
         smartLink.classList.remove("active");
 
-    }
+    });
 
-});
+}
+
+if (smartLink) {
+
+    smartLink.addEventListener("click", (e) => {
+
+        if (e.target === smartLink) {
+
+            smartLink.classList.remove("active");
+
+        }
+
+    });
+
+}
 // ================= ABOUT SLIDER =================
 
 const track = document.querySelector(".about-track");
