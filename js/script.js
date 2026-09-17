@@ -445,112 +445,140 @@ if(deadlineSelect && specificDealine){
 
     function updateServiceFields(){
 
-        const selected =
-            document.querySelector(
-                'input[name="service"]:checked'
-            );
+    const selected =
+        document.querySelector('input[name="service"]:checked');
 
+        const toggleGroups = [
+        ".field-genre",
+        ".field-bpm",
+        ".field-key",
+        ".field-record-people",
+        ".field-record-songs",
+        ".field-mix-songs",
+        ".field-stems",
+        ".field-reference",
+        ".field-reference-link",
+        ".field-beat-reference-link",
+        ".field-beat-demo-link",
+        ".field-drive",
+        ".field-schedule",
+        ".field-deadline",
+        ".field-description"
+    ];
 
-        // Chưa chọn dịch vụ
-        if(!selected){
+    function hideAll(){
+        toggleGroups.forEach(sel => {
+            document.querySelectorAll(sel)
+                .forEach(el => el.classList.add("hidden"));
+        });
+    }
 
-            if(projectDetails){
-                projectDetails.classList.add("hidden");
-            }
+    function show(...selectors){
+        selectors.forEach(sel => {
+            document.querySelectorAll(sel)
+                .forEach(el => el.classList.remove("hidden"));
+        });
+    }
 
-            if(bpmField){
-                bpmField.classList.add("hidden");
-            }
-
-            if(keyField){
-                keyField.classList.add("hidden");
-            }
-
-            if(driveField){
-                driveField.classList.add("hidden");
-            }
-
-            return;
-
-        }
-
-
-        const service =
-            selected.value;
-
-
-        // Có dịch vụ → hiện PROJECT DETAILS
-
+    if(!selected){
         if(projectDetails){
-
-            projectDetails.classList.remove("hidden");
-
+            projectDetails.classList.add("hidden");
         }
+        hideAll();
+        return;
+    }
 
+    const service = selected.value;
 
-        // Mặc định ẩn BPM / KEY / DRIVE
+    if(projectDetails){
+        projectDetails.classList.remove("hidden");
+    }
 
-        if(bpmField){
-            bpmField.classList.add("hidden");
-        }
+    hideAll();
 
-        if(keyField){
-            keyField.classList.add("hidden");
-        }
+    const defaultServices = [
+        "Custom Beat",
+        "Tham khảo kho Beat",
+        "Songwriting"
+    ];
 
-        if(driveField){
-            driveField.classList.add("hidden");
-        }
+    // ================= MẶC ĐỊNH =================
+       // ================= SONGWRITING =================
+    if(service === "Songwriting"){
 
-
-        // =================================================
-        // CUSTOM BEAT / KHO BEAT
-        // =================================================
-
-        if(
-            service === "Custom Beat" ||
-            service === "Tham khảo kho Beat"
-        ){
-
-            if(bpmField){
-                bpmField.classList.remove("hidden");
-            }
-
-            if(keyField){
-                keyField.classList.remove("hidden");
-            }
-
-        }
-
-
-        // =================================================
-        // GOOGLE DRIVE
-        // =================================================
-
-        const driveServices = [
-
-            "Thu âm Vocal",
-
-            "Mix & Master",
-
-            "Vocal Editing",
-
-            "Combo Thu âm + Mixing + Mastering"
-
-        ];
-
-
-        if(
-            driveServices.includes(service)
-        ){
-
-            if(driveField){
-                driveField.classList.remove("hidden");
-            }
-
-        }
+        show(
+            ".field-genre",
+            ".field-reference",
+            ".field-reference-link",
+            ".field-deadline",
+            ".field-description"
+        );
 
     }
+
+    // ================= CUSTOM BEAT / KHO BEAT =================
+    if(
+        service === "Custom Beat" ||
+        service === "Tham khảo kho Beat"
+    ){
+
+        show(
+            ".field-genre",
+            ".field-bpm",
+            ".field-key",
+            ".field-beat-reference-link",
+            ".field-beat-demo-link",
+            ".field-deadline",
+            ".field-description"
+        );
+
+    }
+
+    // ================= THU ÂM VOCAL =================
+    if(service === "Thu âm Vocal"){
+
+        show(
+            ".field-record-people",
+            ".field-record-songs",
+            ".field-schedule"
+        );
+
+    }
+
+    // ================= MIX & MASTER =================
+    if(service === "Mix & Master"){
+
+        show(
+            ".field-mix-songs",
+            ".field-stems",
+            ".field-deadline",
+            ".field-reference",
+            ".field-reference-link",
+            ".field-drive",
+            ".field-description"
+        );
+
+    }
+
+    // ================= COMBO =================
+    if(service === "Combo Thu âm + Mixing + Mastering"){
+
+        show(
+            ".field-record-people",
+            ".field-record-songs",
+            ".field-mix-songs",
+            ".field-stems",
+            ".field-deadline",
+            ".field-reference",
+            ".field-reference-link",
+            ".field-drive",
+            ".field-schedule",
+            ".field-description"
+        );
+
+    }
+
+}
 
 
     // =====================================================
@@ -770,7 +798,7 @@ if(deadlineSelect && specificDealine){
                     service.value || "",
 
 
-                genre:
+                                genre:
                     document
                         .querySelector("#genre")
                         ?.value
@@ -783,6 +811,55 @@ if(deadlineSelect && specificDealine){
 
                 key:
                     keyInput?.value.trim() || "",
+
+
+                recordPeople:
+                    document
+                        .querySelector("#recordPeople")
+                        ?.value
+                        .trim() || "",
+
+
+                recordSongs:
+                    document
+                        .querySelector("#recordSongs")
+                        ?.value
+                        .trim() || "",
+
+
+                mixSongs:
+                    document
+                        .querySelector("#mixSongs")
+                        ?.value
+                        .trim() || "",
+
+
+                stems:
+                    document
+                        .querySelector("#stems")
+                        ?.value
+                        .trim() || "",
+
+
+                                recordSchedule:
+                    document
+                        .querySelector("#recordSchedule")
+                        ?.value
+                        .trim() || "",
+
+
+                beatReferenceLink:
+                    document
+                        .querySelector("#beatReferenceLink")
+                        ?.value
+                        .trim() || "",
+
+
+                beatDemoLink:
+                    document
+                        .querySelector("#beatDemoLink")
+                        ?.value
+                        .trim() || "",
 
 
                 budget:
