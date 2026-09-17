@@ -821,11 +821,7 @@ footer p{
 }
 
 @media (max-width:768px){
-    header{
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-    }
+   
     .menu-toggle{
         display:block;
     }
@@ -1975,6 +1971,15 @@ footer p{
     .contact-project-btn{
         width:100%;
         max-width:280px;
+    }
+
+}
+@media (max-width:768px){
+
+    body.page-project header{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
     }
 
 }
