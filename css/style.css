@@ -1760,11 +1760,15 @@ footer p{
 
 .project-direct-contact a{
 
+    display:block;
+
     color:white;
 
     text-decoration:none;
 
     transition:.3s;
+
+    margin-top:10px;
 
 }
 
@@ -1971,15 +1975,6 @@ footer p{
     .contact-project-btn{
         width:100%;
         max-width:280px;
-    }
-
-}
-@media (max-width:768px){
-
-    body.page-project header{
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
     }
 
 }
