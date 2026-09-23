@@ -735,6 +735,34 @@ if(deadlineSelect && specificDealine){
 
 
             // =================================================
+            // DEADLINE NGÀY CỤ THỂ
+            // =================================================
+
+            const deadlineGroup =
+                document
+                    .querySelector("#deadline")
+                    ?.closest(".form-group");
+
+            if(
+                deadlineGroup &&
+                !deadlineGroup.classList.contains("hidden") &&
+                deadlineSelect.value === "Ngày cụ thể" &&
+                !specificDealine.value
+            ){
+
+                showProjectStatus(
+                    "error",
+                    "Vui lòng chọn ngày hoàn thành cụ thể."
+                );
+
+                specificDealine.focus();
+
+                return;
+
+            }
+
+
+            // =================================================
             // LOADING
             // =================================================
 
@@ -754,157 +782,96 @@ if(deadlineSelect && specificDealine){
             // =================================================
 
             const FORM_ENDPOINT =
-                "https://script.google.com/macros/s/AKfycbxGWy5KklfbpGhDhmP1mdKPKuYhZ7GaUKQ8ZwOwcrXiPwCg4y8NP8GLlXmogjMqi50I/exec";
+                "https://script.google.com/macros/s/AKfycbzE52dClK4T_g5sFhEnagn0i37glPzzG4AxwLLRxdyZ5W-sfEJ8hQbqb_0vC-lGU3A/exec";
+
+
+            // Chỉ lấy giá trị của ô ĐANG HIỂN THỊ theo dịch vụ đã chọn.
+            // Ô bị ẩn (do đổi dịch vụ) sẽ không bị gửi kèm dữ liệu cũ.
+            function getValue(selector){
+
+                const el =
+                    document.querySelector(selector);
+
+                if(!el){
+                    return "";
+                }
+
+                const group =
+                    el.closest(".form-group");
+
+                if(
+                    group &&
+                    group.classList.contains("hidden")
+                ){
+                    return "";
+                }
+
+                return (el.value || "").trim();
+
+            }
+
+
+            // Deadline: nếu chọn "Ngày cụ thể" thì gửi ngày dạng dd/mm/yyyy
+            let deadlineValue =
+                getValue("#deadline");
+
+            if(deadlineValue === "Ngày cụ thể"){
+
+                const picked =
+                    getValue("#specificDeadline");
+
+                deadlineValue =
+                    picked
+                        ? "Ngày " + picked.split("-").reverse().join("/")
+                        : "";
+
+            }
 
 
             const formData = {
 
-                name:
-                    document
-                        .querySelector("#name")
-                        ?.value
-                        .trim() || "",
+                // ---------- Thông tin liên hệ ----------
+                name:      getValue("#name"),
+                email:     getValue("#email"),
+                phone:     getValue("#phone"),
+                facebook:  getValue("#facebook"),
+                zalo:      getValue("#zalo"),
 
+                // ---------- Dịch vụ ----------
+                service:   service.value || "",
 
-                email:
-                    document
-                        .querySelector("#email")
-                        ?.value
-                        .trim() || "",
+                // ---------- Beat / Songwriting ----------
+                genre:     getValue("#genre"),
+                bpm:       getValue("#bpm"),
+                key:       getValue("#key"),
 
+                // ---------- Thu âm ----------
+                recordPeople:   getValue("#recordPeople"),
+                recordSongs:    getValue("#recordSongs"),
+                recordSchedule: getValue("#recordSchedule"),
 
-                phone:
-                    document
-                        .querySelector("#phone")
-                        ?.value
-                        .trim() || "",
+                // ---------- Mix / Combo ----------
+                mixSongs:  getValue("#mixSongs"),
+                stems:     getValue("#stems"),
+                driveLink: getValue("#driveLink"),
 
+                // ---------- Chung ----------
+                budget:    getValue("#budget"),
+                deadline:  deadlineValue,
 
-                facebook:
-                    document
-                        .querySelector("#facebook")
-                        ?.value
-                        .trim() || "",
-
-
-                zalo:
-                    document
-                        .querySelector("#zalo")
-                        ?.value
-                        .trim() || "",
-
-
-                service:
-                    service.value || "",
-
-
-                                genre:
-                    document
-                        .querySelector("#genre")
-                        ?.value
-                        .trim() || "",
-
-
-                bpm:
-                    bpmInput?.value.trim() || "",
-
-
-                key:
-                    keyInput?.value.trim() || "",
-
-
-                recordPeople:
-                    document
-                        .querySelector("#recordPeople")
-                        ?.value
-                        .trim() || "",
-
-
-                recordSongs:
-                    document
-                        .querySelector("#recordSongs")
-                        ?.value
-                        .trim() || "",
-
-
-                mixSongs:
-                    document
-                        .querySelector("#mixSongs")
-                        ?.value
-                        .trim() || "",
-
-
-                stems:
-                    document
-                        .querySelector("#stems")
-                        ?.value
-                        .trim() || "",
-
-
-                                recordSchedule:
-                    document
-                        .querySelector("#recordSchedule")
-                        ?.value
-                        .trim() || "",
-
-
-                beatReferenceLink:
-                    document
-                        .querySelector("#beatReferenceLink")
-                        ?.value
-                        .trim() || "",
-
-
-                beatDemoLink:
-                    document
-                        .querySelector("#beatDemoLink")
-                        ?.value
-                        .trim() || "",
-
-
-                budget:
-                    document
-                        .querySelector("#budget")
-                        ?.value || "",
-
-
-                deadline:
-                    document
-                        .querySelector("#deadline")?.value === "Ngày cụ thể"
-                        ? document.querySelector("#specificDeadline")?.value
-                        : document
-                            .querySelector("#deadline")
-                            ?.value || "",
-
-
-                reference:
-                    document
-                        .querySelector("#reference")
-                        ?.value
-                        .trim() || "",
-
-
+                // Link Reference: Mix/Combo/Songwriting dùng #referenceLink,
+                // Beat dùng #beatReferenceLink → gộp chung 1 cột "Link Reference"
                 referenceLink:
-                    document
-                        .querySelector("#referenceLink")
-                        ?.value
-                        .trim() || "",
+                    getValue("#referenceLink") ||
+                    getValue("#beatReferenceLink"),
 
+                beatDemoLink: getValue("#beatDemoLink"),
 
-                driveLink:
-                    driveInput?.value.trim() || "",
+                description:  getValue("#description"),
 
-
-                description:
-                    document
-                        .querySelector("#description")
-                        ?.value
-                        .trim() || "",
-
-
+                // ---------- Hệ thống ----------
                 page:
                     window.location.href,
-
 
                 submittedAt:
                     new Date()
